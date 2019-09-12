@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  Lugares = ['Rep.Dom', 'Alemania', 'Chile', 'España'];
+
 }
