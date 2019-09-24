@@ -1,0 +1,17 @@
+<table>
+<thead>
+    <tr>
+        <th>name</th>
+        <th>address</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let place of places">
+        <td>{{place.name}}</td>
+        <td>{{place.address}}</td>
+        <td>
+            <button (click)="gotoDetail()">Detalle</button>
+        </td>
+    </tr>
+</tbody>
+</table>
