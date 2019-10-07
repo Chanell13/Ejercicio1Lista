@@ -1,28 +1,56 @@
 import { Injectable } from '@angular/core';
 import { Place } from '../domain/place';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlacesService {
 
-  constructor() { }
+  urlBase = 'https://openapi3.herokuapp.com/api/places';
+  user = 'demo';
+  password = 'demo';
 
-  getall(): Place[] {
-    return[
-      {
-        _id: '01-A',
-        name: 'Chanell',
-        address: 'Guadalbullon7'
-    },
-    {
-      _id: '01-B',
-      name: 'Lisbeth',
-      address: 'Garcia Castro 8'
+  cache: Place[] = null;
+
+  constructor(private http: HttpClient) { }
+
+  getAll(): Observable<Place[]> {
+    if (this.cache) {
+      return of(this.cache);
     }
 
-    ];
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: getBasicAuth(this.user, this.password)
+      }
+    };
 
-
+    return this.http.get(this.urlBase, options).pipe(
+      map(d => {
+        const places = toPlaces(d);
+        this.cache = places;
+        return places;
+      })
+    );
   }
+
+
+}
+
+function toPlaces(array: any): Place[] {
+  return array as Place[];
+}
+
+function toPlace(obj: any): Place {
+  return obj as Place;
+}
+
+
+function getBasicAuth(user: string, password: string): string {
+  return 'Basic ' + btoa(user + ':' + password);
 }
