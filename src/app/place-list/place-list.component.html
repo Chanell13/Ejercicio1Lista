@@ -10,7 +10,7 @@
         <td>{{place.name}}</td>
         <td>{{place.address}}</td>
         <td>
-            <button (click)="gotoDetail()">Detalle</button>
+            <button [routerLink]="['/places', p1._id ]" >Ver Detalle</button>
         </td>
     </tr>
 </tbody>

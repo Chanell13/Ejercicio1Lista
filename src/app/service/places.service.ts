@@ -39,7 +39,28 @@ export class PlacesService {
     );
   }
 
+  getById(id: string): Observable<Place> {
+    if (this.cache) {
+      const found = this.cache.find(p => p._id === id);
+      if (found) {
+        return of(found);
+      }
+    }
 
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: getBasicAuth(this.user, this.password)
+      }
+    };
+
+    const url = this.urlBase + '/' + encodeURIComponent(id);
+
+    return this.http.get(url, options).pipe(
+      map(d => toPlace(d))
+    );
+  }
 }
 
 function toPlaces(array: any): Place[] {
