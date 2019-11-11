@@ -1,1 +1,29 @@
-<app-place-list></app-place-list>
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1 appResalta i18n="title">
+     Listado De Ciudades y Lugares !
+    </h1>
+  </div>  
+  
+  <nav>
+   
+    <a routerLink="/Ciudades" i18n="cities" routerLinkActive="active">Ciudades</a> |
+    <a routerLink="/Lugares" i18n="places" routerLinkActive="active">Lugares</a> |
+   
+  </nav>
+  
+  <hr/>
+    <router-outlet></router-outlet>
+  <hr/>
+  
+  <span i18n="update">Actualizado {minutes, plural, 
+    =0 {ahora mismo}
+    =1 {hace un minuto} 
+    other {hace {{minutes}} minutos} 
+  }</span>
+  
+  <footer i18n="footer">
+    &copy; 2019, UNIR.
+  
+      
+  </footer>

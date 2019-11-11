@@ -73,5 +73,4 @@ function toPlace(obj: any): Place {
 
 
 function getBasicAuth(user: string, password: string): string {
-  return 'Basic ' + btoa(user + ':' + password);
-}
+  return 'Basic ' + btoa(user + ':' + password); }

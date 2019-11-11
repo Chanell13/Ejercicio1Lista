@@ -1,17 +1,13 @@
-<table>
-<thead>
-    <tr>
-        <th>name</th>
-        <th>address</th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let place of places">
-        <td>{{place.name}}</td>
-        <td>{{place.address}}</td>
-        <td>
+<div class="places">
+    <app-laboratorio *ngIf="!places"></app-laboratorio>
+    <ol>
+        <li *ngFor="let p1 of places">
+
+            <app-place [place]=p1></app-place> 
             <button [routerLink]="['/places', p1._id ]" >Ver Detalle</button>
-        </td>
-    </tr>
-</tbody>
-</table>
+        </li>
+    </ol>
+    <div class="error" *ngIf="error">
+        {{ error }}
+    </div>
+</div>
